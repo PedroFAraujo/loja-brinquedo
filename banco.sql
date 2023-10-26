@@ -54,3 +54,18 @@ CREATE TABLE IF NOT EXISTS funcionarioConta (
 );
 
 
+INSERT INTO
+  `funcionarioConta` (
+    `email`,
+    `senha`,
+  )
+VALUES
+  (
+    'nickolas@gmail.com',
+    'Senha123$'
+  ),
+  (
+    'pedro@gmail.com',
+    'Senha123$'
+  );
+  
