@@ -95,39 +95,21 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdActionPerformed
-        btnAddProd.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        dispose();
-                        AdicionarProd adicionarProd = new AdicionarProd();
-                        adicionarProd.setVisible(true);
-                    }   
-                }
-        );
+        dispose();
+        AdicionarProd adicionarProd = new AdicionarProd();
+        adicionarProd.setVisible(true);
     }//GEN-LAST:event_btnAddProdActionPerformed
 
     private void btnVerCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCatalogoActionPerformed
-        btnVerCatalogo.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        dispose();
-                        Produtos catalogo = new Produtos();
-                        catalogo.setVisible(true);
-                    }   
-                }
-        );
+        dispose();
+        Produtos catalogo = new Produtos();
+        catalogo.setVisible(true);
     }//GEN-LAST:event_btnVerCatalogoActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        btnLogout.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        dispose();
-                        Login login = new Login();
-                        login.setVisible(true);
-                    }   
-                }
-        );
+        dispose();
+        Login login = new Login();
+        login.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
