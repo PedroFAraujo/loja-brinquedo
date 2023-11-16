@@ -71,24 +71,23 @@ public class Login extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
+                        .addGap(58, 58, 58)
                         .addComponent(lblTitleLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSenha)
-                            .addComponent(txtEmail)
-                            .addComponent(lblEmail)
-                            .addComponent(lblSenha)
-                            .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtSenha)
+                        .addComponent(txtEmail)
+                        .addComponent(lblEmail)
+                        .addComponent(lblSenha)
+                        .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(lblTitleLogin)
                 .addGap(26, 26, 26)
                 .addComponent(lblEmail)
@@ -100,7 +99,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnLogar)
-                .addGap(44, 44, 44))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,10 +110,9 @@ public class Login extends javax.swing.JFrame {
             String pesquisa = "SELECT * FROM funcionarioconta WHERE email LIKE '" + txtEmail.getText() + "' AND senha = '" + txtSenha.getText() + "'";
             conexao.executaSQL(pesquisa);
             if (conexao.resultset != null && conexao.resultset.first()) {
-                JOptionPane.showMessageDialog(null, "Entrou!");
-                /*dispose();
+                dispose();
                 Dashboard Dashboard = new Dashboard();
-                Dashboard.setVisible(true);*/
+                Dashboard.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Credenciais incorretas. Por favor tente novamente. ");
             }
