@@ -22,6 +22,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setLocationRelativeTo(null);
         conexao = new Conexao(); // inicialização do objeto como instancia 
         conexao.conecta(); //chama o método que conecta
     }

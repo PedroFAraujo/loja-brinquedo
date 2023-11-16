@@ -15,6 +15,7 @@ public class Produtos extends javax.swing.JFrame {
      */
     public Produtos() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

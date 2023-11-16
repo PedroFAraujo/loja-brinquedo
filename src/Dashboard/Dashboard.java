@@ -102,6 +102,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void btnVerCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCatalogoActionPerformed
         dispose();
+        setLocationRelativeTo(null);
         Produtos catalogo = new Produtos();
         catalogo.setVisible(true);
     }//GEN-LAST:event_btnVerCatalogoActionPerformed

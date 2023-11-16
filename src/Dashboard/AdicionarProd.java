@@ -15,6 +15,7 @@ public class AdicionarProd extends javax.swing.JFrame {
      */
     public AdicionarProd() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
