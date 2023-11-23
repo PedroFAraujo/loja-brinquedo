@@ -15,7 +15,8 @@ import Dashboard.*;
  */
 public class Login extends javax.swing.JFrame {
     
-     Conexao conexao;
+     Conexao conexao = new Conexao(); // inicialização do objeto como instancia 
+     
     
     /**
      * Creates new form Login
@@ -23,8 +24,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
-        conexao = new Conexao(); // inicialização do objeto como instancia 
-        conexao.conecta(); //chama o método que conecta
+        
     }
 
     /**
@@ -106,6 +106,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
+
         try{
             String pesquisa = "SELECT * FROM funcionarioconta WHERE email LIKE '" + txtEmail.getText() + "' AND senha = '" + txtSenha.getText() + "'";
             conexao.executaSQL(pesquisa);

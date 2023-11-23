@@ -47,11 +47,11 @@ CREATE TABLE IF NOT EXISTS `funcionarioConta`(
   FOREIGN KEY(`idFuncionario`) REFERENCES `funcionario`(`idFuncionario`)
 );
 
-INSERT INTO `faixasalarial`(`idFaixaSalarial`, `salario`) VALUES ('1','1800.00');
-INSERT INTO `faixasalarial`(`idFaixaSalarial`, `salario`) VALUES ('2','2500.00');
+INSERT INTO `faixaSalarial`(`idFaixaSalarial`, `salario`) VALUES ('1','1800.00');
+INSERT INTO `faixaSalarial`(`idFaixaSalarial`, `salario`) VALUES ('2','2500.00');
 
 INSERT INTO `funcionario`(`idFuncionario`, `nome`, `cpf`, `endereco`, `dataNascimento`, `faixaSalarial`) VALUES ('1','Nickolas','12345678910','Rua Sla','2007-03-23','2');
 INSERT INTO `funcionario`(`idFuncionario`, `nome`, `cpf`, `endereco`, `dataNascimento`, `faixaSalarial`) VALUES ('2','Pedro','[value-3]','[value-4]','[value-5]','1');
 
-INSERT INTO `funcionarioconta`(`email`, `senha`, `idFuncionario`) VALUES ('nickolas@gmail.com','Senha123$','1');
-INSERT INTO `funcionarioconta`(`email`, `senha`, `idFuncionario`) VALUES ('pedro@gmail.com','Senha123$','2');
+INSERT INTO `funcionarioConta`(`email`, `senha`, `idFuncionario`) VALUES ('nickolas@gmail.com','Senha123$','1');
+INSERT INTO `funcionarioConta`(`email`, `senha`, `idFuncionario`) VALUES ('pedro@gmail.com','Senha123$','2');
