@@ -33,11 +33,11 @@ public class Catalogo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1108, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 758, Short.MAX_VALUE)
         );
 
         pack();
@@ -82,5 +82,89 @@ public class Catalogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddProd;
+    private javax.swing.JButton btnAddProd1;
+    private javax.swing.JButton btnAddProd2;
+    private javax.swing.JButton btnAddProd3;
+    private javax.swing.JButton btnAddProd4;
+    private javax.swing.JButton btnAddProd5;
+    private javax.swing.JButton btnAddProd6;
+    private javax.swing.JButton btnCliente;
+    private javax.swing.JButton btnCliente1;
+    private javax.swing.JButton btnCliente2;
+    private javax.swing.JButton btnCliente3;
+    private javax.swing.JButton btnCliente4;
+    private javax.swing.JButton btnCliente5;
+    private javax.swing.JButton btnCliente6;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnLogout1;
+    private javax.swing.JButton btnLogout2;
+    private javax.swing.JButton btnLogout3;
+    private javax.swing.JButton btnLogout4;
+    private javax.swing.JButton btnLogout5;
+    private javax.swing.JButton btnLogout6;
+    private javax.swing.JButton btnVerCatalogo;
+    private javax.swing.JButton btnVerCatalogo1;
+    private javax.swing.JButton btnVerCatalogo2;
+    private javax.swing.JButton btnVerCatalogo3;
+    private javax.swing.JButton btnVerCatalogo4;
+    private javax.swing.JButton btnVerCatalogo5;
+    private javax.swing.JButton btnVerCatalogo6;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.Box.Filler filler6;
+    private javax.swing.Box.Filler filler7;
+    private javax.swing.Box.Filler filler8;
+    private javax.swing.Box.Filler filler9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel lblTitleLogin1;
+    private javax.swing.JLabel lblTitleLogin10;
+    private javax.swing.JLabel lblTitleLogin11;
+    private javax.swing.JLabel lblTitleLogin12;
+    private javax.swing.JLabel lblTitleLogin13;
+    private javax.swing.JLabel lblTitleLogin14;
+    private javax.swing.JLabel lblTitleLogin2;
+    private javax.swing.JLabel lblTitleLogin3;
+    private javax.swing.JLabel lblTitleLogin4;
+    private javax.swing.JLabel lblTitleLogin5;
+    private javax.swing.JLabel lblTitleLogin6;
+    private javax.swing.JLabel lblTitleLogin7;
+    private javax.swing.JLabel lblTitleLogin8;
+    private javax.swing.JLabel lblTitleLogin9;
     // End of variables declaration//GEN-END:variables
 }
