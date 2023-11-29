@@ -63,6 +63,7 @@ public class Login extends javax.swing.JFrame {
 
         txtEmail.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(8, 36, 81));
+        txtEmail.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblSenha.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblSenha.setForeground(new java.awt.Color(253, 255, 255));
@@ -70,6 +71,7 @@ public class Login extends javax.swing.JFrame {
 
         txtSenha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtSenha.setForeground(new java.awt.Color(8, 36, 81));
+        txtSenha.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnLogar.setBackground(new java.awt.Color(253, 255, 255));
         btnLogar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -81,7 +83,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        filler1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        filler1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         filler1.setForeground(new java.awt.Color(255, 255, 255));
 
         lblTitleLogin1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
