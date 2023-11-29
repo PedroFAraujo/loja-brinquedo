@@ -55,7 +55,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnAddProd.setBackground(new java.awt.Color(253, 255, 255));
         btnAddProd.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnAddProd.setForeground(new java.awt.Color(8, 36, 81));
-        btnAddProd.setText("Adicionar Produto");
+        btnAddProd.setText("Produtos");
         btnAddProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddProdActionPerformed(evt);
