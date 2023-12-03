@@ -1,21 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package Dashboard;
 
+package Dashboard;
+   import conexao.Conexao; //importar do package conexao a classe Conexao
+    import javax.swing.JOptionPane;
+    import java.sql.*;
+    import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author dti
  */
 public class Produtos extends javax.swing.JFrame {
-
+    
+    Conexao conexao; 
+    
     /**
      * Creates new form AdicionarProd
      */
     public Produtos() {
         initComponents();
         setLocationRelativeTo(null);
+        conexao = new Conexao(); // inicialização do objeto como instancia 
+        conexao.conecta(); //chama o método que conecta
+        conexao.executaSQL("SELECT * FROM produto ORDER BY idProduto"); //chama o método "executaSQL" e passa como parametro query SELECT
+        preencherTabela(); //executa o método preencherTabela
+        posicionarRegistro(); //executa o método posicionarRegistro
+        tblProduto.setAutoCreateRowSorter(true); //ativa a classificação ordenada da tabela
     }
 
     /**
@@ -27,13 +35,313 @@ public class Produtos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel5 = new javax.swing.JPanel();
+        lblCodigo = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblDataNascimento = new javax.swing.JLabel();
+        lblTelefone = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProduto = new javax.swing.JTable();
+        btnPrimeiroRegistro = new javax.swing.JButton();
+        btnVoltarRegistro = new javax.swing.JButton();
+        btnAvancarRegistro = new javax.swing.JButton();
+        btnUltimoRegistro = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnAdicionar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtPesquisarNome = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
+        txtPreco = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtDescricao = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblTitleLogin1 = new javax.swing.JLabel();
         lblTitleLogin3 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel5.setBackground(new java.awt.Color(8, 36, 81));
+
+        lblCodigo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblCodigo.setForeground(new java.awt.Color(253, 255, 255));
+        lblCodigo.setText("Código:");
+
+        lblNome.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(253, 255, 255));
+        lblNome.setText("Nome:");
+
+        lblDataNascimento.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblDataNascimento.setForeground(new java.awt.Color(253, 255, 255));
+        lblDataNascimento.setText("Descrição");
+
+        lblTelefone.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblTelefone.setForeground(new java.awt.Color(253, 255, 255));
+        lblTelefone.setText("Preço");
+
+        txtNome.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtNome.setForeground(new java.awt.Color(8, 36, 81));
+
+        txtCodigo.setForeground(new java.awt.Color(8, 36, 81));
+        try {
+            txtCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        tblProduto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tblProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nome", "Descricao", "Preço"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProdutoMouseClicked(evt);
+            }
+        });
+        tblProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tblProdutoKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblProduto);
+
+        btnPrimeiroRegistro.setBackground(new java.awt.Color(253, 255, 255));
+        btnPrimeiroRegistro.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnPrimeiroRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/primeiro.png"))); // NOI18N
+        btnPrimeiroRegistro.setMaximumSize(new java.awt.Dimension(60, 60));
+        btnPrimeiroRegistro.setMinimumSize(new java.awt.Dimension(60, 60));
+        btnPrimeiroRegistro.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnPrimeiroRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimeiroRegistroActionPerformed(evt);
+            }
+        });
+
+        btnVoltarRegistro.setBackground(new java.awt.Color(253, 255, 255));
+        btnVoltarRegistro.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnVoltarRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/anterior.png"))); // NOI18N
+        btnVoltarRegistro.setMaximumSize(new java.awt.Dimension(60, 60));
+        btnVoltarRegistro.setMinimumSize(new java.awt.Dimension(60, 60));
+        btnVoltarRegistro.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnVoltarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarRegistroActionPerformed(evt);
+            }
+        });
+
+        btnAvancarRegistro.setBackground(new java.awt.Color(253, 255, 255));
+        btnAvancarRegistro.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnAvancarRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/proximo.png"))); // NOI18N
+        btnAvancarRegistro.setMaximumSize(new java.awt.Dimension(60, 60));
+        btnAvancarRegistro.setMinimumSize(new java.awt.Dimension(60, 60));
+        btnAvancarRegistro.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnAvancarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvancarRegistroActionPerformed(evt);
+            }
+        });
+
+        btnUltimoRegistro.setBackground(new java.awt.Color(253, 255, 255));
+        btnUltimoRegistro.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnUltimoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ultimo.png"))); // NOI18N
+        btnUltimoRegistro.setMaximumSize(new java.awt.Dimension(60, 60));
+        btnUltimoRegistro.setMinimumSize(new java.awt.Dimension(60, 60));
+        btnUltimoRegistro.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnUltimoRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimoRegistroActionPerformed(evt);
+            }
+        });
+
+        btnSalvar.setBackground(new java.awt.Color(253, 255, 255));
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/salvar.png"))); // NOI18N
+        btnSalvar.setMaximumSize(new java.awt.Dimension(60, 60));
+        btnSalvar.setMinimumSize(new java.awt.Dimension(60, 60));
+        btnSalvar.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setBackground(new java.awt.Color(253, 255, 255));
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
+        btnExcluir.setMaximumSize(new java.awt.Dimension(60, 60));
+        btnExcluir.setMinimumSize(new java.awt.Dimension(60, 60));
+        btnExcluir.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setBackground(new java.awt.Color(253, 255, 255));
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editar.png"))); // NOI18N
+        btnEditar.setMaximumSize(new java.awt.Dimension(60, 60));
+        btnEditar.setMinimumSize(new java.awt.Dimension(60, 60));
+        btnEditar.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnAdicionar.setBackground(new java.awt.Color(253, 255, 255));
+        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/adicionar.png"))); // NOI18N
+        btnAdicionar.setMaximumSize(new java.awt.Dimension(60, 60));
+        btnAdicionar.setMinimumSize(new java.awt.Dimension(60, 60));
+        btnAdicionar.setPreferredSize(new java.awt.Dimension(60, 60));
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(253, 255, 255));
+        jLabel1.setText("Pesquisar por nome do Produto:");
+
+        btnPesquisar.setBackground(new java.awt.Color(253, 255, 255));
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/search.png"))); // NOI18N
+        btnPesquisar.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnPesquisar.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnPesquisar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        btnSair.setBackground(new java.awt.Color(253, 255, 255));
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/voltar.png"))); // NOI18N
+        btnSair.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnSair.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnSair.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
+        txtPreco.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtPreco.setForeground(new java.awt.Color(8, 36, 81));
+
+        txtDescricao.setColumns(20);
+        txtDescricao.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtDescricao.setForeground(new java.awt.Color(8, 36, 81));
+        txtDescricao.setRows(5);
+        jScrollPane3.setViewportView(txtDescricao);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTelefone)
+                            .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNome)
+                            .addComponent(lblDataNascimento))
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNome)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                            .addComponent(btnPrimeiroRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnVoltarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnAvancarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnUltimoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCodigo)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTelefone)
+                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDataNascimento)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnPrimeiroRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAvancarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUltimoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtPesquisarNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
+        );
 
         jPanel2.setBackground(new java.awt.Color(253, 255, 255));
 
@@ -75,19 +383,6 @@ public class Produtos extends javax.swing.JFrame {
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(8, 36, 81));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 649, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 743, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,6 +401,246 @@ public class Produtos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void preencherTabela(){
+        int[] columnWidths = { 1, 45, 150, 1}; //vetor com as larguras preferenciais  desejadas das colunas na tabela produto
+        
+        // Estrutura de repetição para definir a largura preferencial das colunas na tabela tblProduto
+        for (int i = 0; i < columnWidths.length; i++) {
+            tblProduto.getColumnModel().getColumn(i).setPreferredWidth(columnWidths[i]);
+        }
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblProduto.getModel(); // Obtendo o modelo da tabela para manipulação
+        modelo.setNumRows(0); // Limpa todos os dados da tabela atual
+        
+        try{
+            conexao.resultset.beforeFirst(); // Movendo o cursor do resultset para antes do primeiro item
+            while(conexao.resultset.next()){ // Iterando sobre os resultados do resultset
+                // Lendo os valores das colunas do resultset e atribuindo a variáveis
+                String cod = conexao.resultset.getString("idProduto");
+                String nome = conexao.resultset.getString("nomeProduto");
+                String descricao = conexao.resultset.getString("descricaoProduto");
+                String preco = conexao.resultset.getString("precoProduto");
+            
+                // Adicionando uma nova linha à tabela com os valores das variáveis lidas
+                modelo.addRow(new Object[]{cod, nome, descricao, preco});
+            }
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "\nErro ao listar dados da tabela!  :\n"+erro, "Mensagem do Programa: ",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    public void posicionarRegistro(){
+        try{
+            conexao.resultset.first(); //posiciona o 1º registro da tabela
+            mostrarDados(); //chama o método que irá buscar o dado da tabela
+        }catch(SQLException erro){
+             JOptionPane.showMessageDialog(null, "Não foi possível posicionar no primeiro registro: "+erro, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    public void mostrarDados(){
+        try{
+            //associando a caixa de texto do JFRAME ao campo correspondente
+            txtCodigo.setText(conexao.resultset.getString("idProduto"));
+            txtNome.setText(conexao.resultset.getString("nomeProduto"));
+            txtDescricao.setText(conexao.resultset.getString("descricaoProduto"));
+            txtPreco.setText(conexao.resultset.getString("precoProduto"));
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Não localizou os dados: "+erro, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    private void tblProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutoMouseClicked
+        int linhaSelecionada = tblProduto.getSelectedRow(); // Obtendo o índice da linha selecionada na tabela
+
+        // Preenchendo os campos de texto com os valores da linha selecionada na tabela
+        txtCodigo.setText(tblProduto.getValueAt(linhaSelecionada, 0).toString());
+        txtNome.setText(tblProduto.getValueAt(linhaSelecionada, 1).toString());
+        txtDescricao.setText(tblProduto.getValueAt(linhaSelecionada, 2).toString());
+        txtPreco.setText(tblProduto.getValueAt(linhaSelecionada, 3).toString());
+    }//GEN-LAST:event_tblProdutoMouseClicked
+
+    private void tblProdutoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblProdutoKeyPressed
+        int linhaSelecionada = tblProduto.getSelectedRow(); // Obtendo o índice da linha selecionada na tabela
+
+        // Preenchendo os campos de texto com os valores da linha selecionada na tabela
+        txtCodigo.setText(tblProduto.getValueAt(linhaSelecionada, 0).toString());
+        txtNome.setText(tblProduto.getValueAt(linhaSelecionada, 1).toString());
+        txtPreco.setText(tblProduto.getValueAt(linhaSelecionada, 2).toString());
+        txtDescricao.setText(tblProduto.getValueAt(linhaSelecionada, 3).toString());
+    }//GEN-LAST:event_tblProdutoKeyPressed
+
+    private void btnPrimeiroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroRegistroActionPerformed
+        try{
+            conexao.resultset.first();
+            mostrarDados();
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Não foi possível acessar o primeiro registro: "+erro, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnPrimeiroRegistroActionPerformed
+
+    private void btnVoltarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarRegistroActionPerformed
+        try{
+            //se o registro for o primeiro e o usuário clicar no botão, move para o ultimo registro
+            if (conexao.resultset.isFirst()) {
+                conexao.resultset.last(); // Mover para o último registro
+            } else {
+                conexao.resultset.previous();
+            }
+            mostrarDados();
+
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Não foi possível acessar o registro: "+erro, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnVoltarRegistroActionPerformed
+
+    private void btnAvancarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancarRegistroActionPerformed
+        try{
+            //se o registro for o último e o usuário clicar no botão, move para o primeiro registro
+            if (conexao.resultset.isLast()) {
+                conexao.resultset.first(); // Mover para o primeiro registro
+            } else {
+                conexao.resultset.next();
+            }
+            mostrarDados();
+
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Não foi possível acessar o registro: "+erro, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAvancarRegistroActionPerformed
+
+    private void btnUltimoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoRegistroActionPerformed
+        try{
+            conexao.resultset.last();
+            mostrarDados();
+        }catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "Não foi possível acessar o primeiro registro: "+erro, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUltimoRegistroActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        //declaração de variáveis e atribuição a elas o valor de cada caixa de texto respectiva atraves do metodo getText()
+        String codigo = txtCodigo.getText();
+        String nome = txtNome.getText();
+        String preco = txtPreco.getText();
+        String descricao = txtDescricao.getText();
+                
+        //estrutura de decisão para ver se algum campo estiver vazio. Se algum campo estiver vazio vai exibir a mensagem de erro, caso contrário irá prosseguir com o try catch
+        if(nome.isEmpty() || preco.isEmpty() || descricao.isEmpty()){
+            JOptionPane.showMessageDialog(null, "\nErro na gravação: \nCampo vazio");
+        }else{
+            try{
+                //define a querry SQL de inserção, onde são informados nome da tabela, campos e na sequência as variáveis resultantes das caixas de texto
+                String insertSql = "INSERT INTO produto (idProduto, nomeProduto, descricaoProduto, precoProduto) VALUES ('" + codigo +  "','" + nome +  "', '" + descricao +  "', '" + preco +  "'  )";
+
+                //executa (no ambiente Java - virtualmente) o comando da inserção
+                conexao.statement.executeUpdate(insertSql);
+
+                JOptionPane.showMessageDialog(null, "Gravação realizada com sucesso!", "Mensagem do Programa  ", JOptionPane.INFORMATION_MESSAGE);
+
+                //executa (no ambiente Java - virtualmente) o comando de seleção dos dados da tabela
+                conexao.executaSQL("SELECT * FROM produto ORDER BY idProduto");
+
+                preencherTabela();
+
+            }catch(SQLException erroSql){
+                JOptionPane.showMessageDialog(null, "\nErro na gravação: \n" +erroSql, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // atribuição a uma string vazia para a consulta SQL.
+        String sql = "";
+
+        try{
+            // Exibição de uma uma caixa de diálogo de confirmação para a exclusão.
+            int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o registro: ", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION);
+
+            // Se o usuário confirmar a exclusão (clicar em "Sim").
+            if(resposta == 0){
+
+                // Atribuição a variavel sql para uma consulta  SQL para excluir um registro com base no código inserido no campo txtCodigo.
+                sql = "DELETE FROM produto WHERE idProduto = " + txtCodigo.getText();
+
+                // Execução da consulta de exclusão no banco de dados.
+                int excluir = conexao.statement.executeUpdate(sql);
+
+                // Se a exclusão for bem-sucedida (um registro foi excluído).
+                if(excluir == 1){
+
+                    // Exibição de uma mensagem de sucesso.
+                    JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso! ", "Mensagem do Programa ", JOptionPane.INFORMATION_MESSAGE);
+                    conexao.executaSQL("SELECT * FROM produto ORDER BY idProduto"); // Execução de uma consulta SQL para atualizar os registros no banco de dados.
+                    conexao.resultset.first(); //posiciona o cursor no primeiro registro
+                    preencherTabela(); //executa o método preencherTabela
+                    posicionarRegistro(); //executa o método posicionarRegistro
+                }else{ // Se a exclusão não for bem-sucedida (nenhum registro foi excluído).
+                    JOptionPane.showMessageDialog(null, "Operação cancelada pelo usuário ", "Mensagem do Programa ", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }catch(SQLException erroSql){
+            // Em caso de erro SQL, exiba uma mensagem de erro.
+            JOptionPane.showMessageDialog(null, "\nErro na exclusão: \n" +erroSql, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        //declaração de variáveis e atribuição a elas o valor de cada caixa de texto respectiva atraves do metodo getText()
+        String codigo = txtCodigo.getText();
+        String nome = txtNome.getText();
+        String preco = txtPreco.getText();
+        String descricao = txtDescricao.getText();
+
+        String sql;
+        String msg = "";
+
+        try{
+            sql = "UPDATE produto set nomeProduto='" + nome + "',descricaoProduto='" + descricao + "', precoProduto='" + preco+ "' WHERE idProduto = " + codigo;
+            msg = "Alteração de registro";
+
+            //executa (no ambiente Java - virtualmente) o comando da inserção
+            conexao.statement.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Gravação realizada com sucesso!", "Mensagem do Programa  ", JOptionPane.INFORMATION_MESSAGE);
+
+            //executa (no ambiente Java - virtualmente) o comando de seleção dos dados da tabela
+            conexao.executaSQL("SELECT * FROM produto ORDER BY idProduto");
+
+            preencherTabela();
+
+        }catch(SQLException erroSql){
+            JOptionPane.showMessageDialog(null, "\nErro na gravação: \n" +erroSql, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        limparCampos(); //executa o método limparCampos()
+
+        txtCodigo.requestFocus(); //posiciona o cursor no campo txtCodigo para digitação
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        try{
+            String pesquisa = "SELECT * FROM produto WHERE nomeProduto LIKE '" + txtPesquisarNome.getText() + "%' ";
+            conexao.executaSQL(pesquisa);
+            if(conexao.resultset.first()){
+                preencherTabela();
+            }else{
+                JOptionPane.showMessageDialog(null, "\n Não há registros com esse parâmetro ", "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }catch(SQLException erroSql){
+            // Em caso de erro SQL, exiba uma mensagem de erro.
+            JOptionPane.showMessageDialog(null, "\nNenhum registro encontrado: \n" +erroSql, "Mensagemos do programa: ", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        dispose();
+        Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,12 +677,43 @@ public class Produtos extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void limparCampos(){
+        //limpa a caixa de texto em questão
+        txtCodigo.setText("");
+        txtNome.setText("");
+        txtPreco.setText("");
+        txtDescricao.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnAvancarRegistro;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnPrimeiroRegistro;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnUltimoRegistro;
+    private javax.swing.JButton btnVoltarRegistro;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblDataNascimento;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTitleLogin1;
     private javax.swing.JLabel lblTitleLogin3;
+    private javax.swing.JTable tblProduto;
+    private javax.swing.JFormattedTextField txtCodigo;
+    private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtPesquisarNome;
+    private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
 }
