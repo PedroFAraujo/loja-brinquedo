@@ -83,6 +83,8 @@ public class Vender extends javax.swing.JFrame {
         btnRemover = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         lblPreco = new javax.swing.JLabel();
+        btnSair = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblTitleLogin1 = new javax.swing.JLabel();
@@ -92,13 +94,21 @@ public class Vender extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(8, 36, 81));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Vender Produtos");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Id do Produto");
+        jLabel2.setText("Id do Produto:");
 
+        txtIdProduto.setBackground(new java.awt.Color(253, 255, 255));
+        txtIdProduto.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        txtIdProduto.setForeground(new java.awt.Color(8, 36, 81));
+
+        btnAdicionar.setBackground(new java.awt.Color(253, 255, 255));
+        btnAdicionar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnAdicionar.setForeground(new java.awt.Color(8, 36, 81));
         btnAdicionar.setText("Adicionar Produto");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +116,9 @@ public class Vender extends javax.swing.JFrame {
             }
         });
 
+        btnRemover.setBackground(new java.awt.Color(253, 255, 255));
+        btnRemover.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnRemover.setForeground(new java.awt.Color(8, 36, 81));
         btnRemover.setText("Remover Produto");
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,61 +126,86 @@ public class Vender extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Preço Total");
+        jLabel4.setText("Preço Total:");
 
-        lblPreco.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblPreco.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblPreco.setForeground(new java.awt.Color(255, 255, 255));
         lblPreco.setText("00.00");
+
+        btnSair.setBackground(new java.awt.Color(253, 255, 255));
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/voltar.png"))); // NOI18N
+        btnSair.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnSair.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnSair.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
+        btnFinalizar.setBackground(new java.awt.Color(253, 255, 255));
+        btnFinalizar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnFinalizar.setForeground(new java.awt.Color(8, 36, 81));
+        btnFinalizar.setText("Finalizar Compra");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(202, 202, 202))
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(112, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(btnAdicionar)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnRemover))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(lblPreco)))
-                .addContainerGap(223, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel1))
+                            .addComponent(btnFinalizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(26, 26, 26)
+                        .addComponent(lblPreco)
+                        .addGap(150, 150, 150))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(jLabel4)
-                        .addGap(64, 64, 64)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdicionar)
-                            .addComponent(btnRemover)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1)
-                        .addGap(82, 82, 82)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(89, 89, 89)
-                .addComponent(lblPreco)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(167, 167, 167)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addComponent(btnAdicionar)
+                .addGap(18, 18, 18)
+                .addComponent(btnRemover)
+                .addGap(18, 18, 18)
+                .addComponent(btnFinalizar)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPreco)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         jPanel2.setBackground(new java.awt.Color(253, 255, 255));
@@ -207,7 +245,7 @@ public class Vender extends javax.swing.JFrame {
                 .addComponent(lblTitleLogin3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitleLogin1)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,7 +256,7 @@ public class Vender extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,6 +274,18 @@ public class Vender extends javax.swing.JFrame {
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         removerProduto(Integer.parseInt(txtIdProduto.getText()));
     }//GEN-LAST:event_btnRemoverActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        dispose();
+        Dashboard dashboard = new Dashboard();
+        dashboard.setVisible(true);
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        // TODO add your handling code here:
+        lblPreco.setText("00.00");
+        JOptionPane.showMessageDialog(null, "Compra Finalizada!");
+    }//GEN-LAST:event_btnFinalizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,7 +324,9 @@ public class Vender extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
