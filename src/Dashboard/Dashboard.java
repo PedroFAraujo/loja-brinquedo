@@ -87,6 +87,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnCliente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnCliente.setForeground(new java.awt.Color(8, 36, 81));
         btnCliente.setText("Clientes");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
 
         btnVender.setBackground(new java.awt.Color(253, 255, 255));
         btnVender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -227,6 +232,12 @@ public class Dashboard extends javax.swing.JFrame {
         Vender vender = new Vender();
         vender.setVisible(true);
     }//GEN-LAST:event_btnVenderActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        dispose();
+        Clientes clientes = new Clientes();
+        clientes.setVisible(true);
+    }//GEN-LAST:event_btnClienteActionPerformed
 
     /**
      * @param args the command line arguments
