@@ -4,12 +4,15 @@
  */
 package Dashboard;
 
+import conexao.Conexao;
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Pedro
  */
 public class Vender extends javax.swing.JFrame {
-
+    Conexao conexao; 
     /**
      * Creates new form Vender
      */
@@ -17,8 +20,52 @@ public class Vender extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        conexao = new Conexao();
+        conexao.conecta();
     }
 
+    public void adicionarProduto(int id){
+        conexao.executaSQL("SELECT * FROM `produto` WHERE idProduto='" + id + "'");
+
+         try {
+            if(conexao.resultset.next()){
+                float antigoPreco = Float.parseFloat(lblPreco.getText());
+
+                float precoProduto = Float.parseFloat(conexao.resultset.getString("precoProduto"));
+
+                float novoPreco = antigoPreco + precoProduto;
+
+                lblPreco.setText(Float.toString(novoPreco));
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Produto não encontrado.");
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    public void removerProduto(int id){
+        conexao.executaSQL("SELECT * FROM `produto` WHERE idProduto='" + id + "'");
+
+         try {
+            if(conexao.resultset.next()){
+                float antigoPreco = Float.parseFloat(lblPreco.getText());
+
+                float precoProduto = Float.parseFloat(conexao.resultset.getString("precoProduto"));
+
+                float novoPreco = antigoPreco - precoProduto;
+
+                if(novoPreco < 0){
+                    JOptionPane.showMessageDialog(null, "Não foi possível remover produto.");
+                }else{
+                    lblPreco.setText(Float.toString(novoPreco));
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Produto não encontrado.");
+            }
+        } catch (Exception e) {
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +76,13 @@ public class Vender extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtIdProduto = new javax.swing.JTextField();
+        btnAdicionar = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        lblPreco = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblTitleLogin1 = new javax.swing.JLabel();
@@ -38,15 +92,82 @@ public class Vender extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(8, 36, 81));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Vender Produtos");
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Id do Produto");
+
+        btnAdicionar.setText("Adicionar Produto");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
+
+        btnRemover.setText("Remover Produto");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Preço Total");
+
+        lblPreco.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblPreco.setForeground(new java.awt.Color(255, 255, 255));
+        lblPreco.setText("00.00");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 699, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(202, 202, 202))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(107, 107, 107)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnAdicionar)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnRemover))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(268, 268, 268)
+                        .addComponent(lblPreco)))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel4)
+                        .addGap(64, 64, 64)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdicionar)
+                            .addComponent(btnRemover)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1)
+                        .addGap(82, 82, 82)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(89, 89, 89)
+                .addComponent(lblPreco)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(253, 255, 255));
@@ -108,6 +229,14 @@ public class Vender extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        adicionarProduto(Integer.parseInt(txtIdProduto.getText()));
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        removerProduto(Integer.parseInt(txtIdProduto.getText()));
+    }//GEN-LAST:event_btnRemoverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -144,10 +273,17 @@ public class Vender extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnRemover;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblTitleLogin1;
     private javax.swing.JLabel lblTitleLogin3;
+    private javax.swing.JTextField txtIdProduto;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `idProduto` int not null,
   `nomeProduto` varchar(100) not null,
   `descricaoProduto` text not null,
-  `precoProduto` decimal(4, 2) not null,
+  `precoProduto` float not null,
   PRIMARY KEY(`idProduto`)
 );
 
